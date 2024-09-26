@@ -13,14 +13,13 @@ MongoClient.connect(connectionString)
     app.set('view engine', 'ejs')
     app.use(express.urlencoded({ extended: true }))
     app.use(express.static('public'))
-    app.use(express.json())
 
     app.get('/', (req, res) => {
         quotesCollection
            .find()
            .toArray()
            .then(results => {
-            console.log(results)
+            console.log(results) 
             res.render('index.ejs', { quotes: results })
         })
         .catch(error => console.error(error))
@@ -39,6 +38,7 @@ MongoClient.connect(connectionString)
     })
   })
   .catch(console.error)
+  
 
 
 
