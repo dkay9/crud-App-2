@@ -13,6 +13,7 @@ MongoClient.connect(connectionString)
     app.set('view engine', 'ejs')
     app.use(express.urlencoded({ extended: true }))
     app.use(express.static('public'))
+    app.use(express.json())
 
     app.get('/', (req, res) => {
         quotesCollection
@@ -33,12 +34,31 @@ MongoClient.connect(connectionString)
           })
           .catch(error => console.error(error))
     })
+    app.put('/quotes', (req, res) => {
+      quotesCollection
+        .findOneAndUpdate(
+          {name: 'Naruto'},
+          {
+            $set: {
+              name: req.body.name,
+              quote: req.body.quote
+            },
+          },
+          {
+            upsert: true,
+          }
+        )
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => console.error(error))
+    })
     app.listen(3000, function(){
         console.log('listening on 3000');
     })
   })
   .catch(console.error)
-  
+
 
 
 
