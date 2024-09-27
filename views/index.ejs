@@ -4,38 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY APP</title>
+    <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-    <h1>May Node and Express be with you.</h1>
-    <form action="/quotes" method="POST">
-        <input type="text" placeholder="name" name="name" />
-        <input type="text" placeholder="quote" name="quote" />
-        <button type="submit">Submit</button>
-    </form>
+    <h1 data-position="header">May Node and Express be with you.</h1>
+    <section data-position="add-quote">
+        <h2>Add quote</h2>
+        <form action="/quotes" method="POST">
+            <input type="text" placeholder="name" name="name" />
+            <input type="text" placeholder="quote" name="quote" />
+            <button type="submit">Submit</button>
+        </form>
+    </section>
     
-    <h2>Quotes</h2>
-    <ul class="quotes">
-        <% for(var i = 0; i < quotes.length; i++) {%>
-        <li class="quote">
-            <span><%= quotes[i].name %></span>:
-            <span><%= quotes[i].quote %></span>
-        </li>
-        <% } %>
-    </ul>
+    <section data-position="update-quote">        
+        <div>
+            <h2>Naruto invades</h2>
+            <p>Replace first Sasuke's quote with a quote written by Uzumaki Naruto</p>
+            <button id="update-button">Replace Sasuke's quote</button>
+        </div>
+    </section>
 
-    <div>
-        <h2>Naruto invades</h2>
-        <p>Replace first Sasuke's quote with a quote written by Uzumaki Naruto</p>
-        <button id="update-button">Replace Sasuke's quote</button>
-    </div>
+    <section data-position="delete-quote">
+        <div>
+            <h2>Remove Naruto!</h2>
+            <p>
+              Delete one Naruto's quote. Does nothing if there are no more Naruto's quote
+            </p>
+            <button id="delete-button">Delete Naruto's quote</button>
+        </div>    
+    </section data-position="quotes">
 
-    <div>
-        <h2>Remove Naruto!</h2>
-        <p>
-          Delete one Naruto's quote. Does nothing if there are no more Naruto's quote
-        </p>
-        <button id="delete-button">Delete Naruto's quote</button>
-    </div>
+    <section>
+        <h2>Quotes</h2>
+        <ul class="quotes">
+            <% for(var i = 0; i < quotes.length; i++) {%>
+            <li class="quote">
+                <span><%= quotes[i].name %></span>:
+                <span><%= quotes[i].quote %></span>
+            </li>
+            <% } %>
+        </ul>
+    </section>
+
 
     <div id="message"></div>
 
