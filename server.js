@@ -4,7 +4,11 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const app = express()
 const MongoClient = require('mongodb').MongoClient 
-const connectionString = 'mongodb+srv://kaludavid411:Chooseme9@cluster0.xaxdq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const connectDB = require('./config/database')
+
+require('dotenv').config({path: './config/.env'})
+
+connectDB()
 
 MongoClient.connect(connectionString)
   .then(client => {
